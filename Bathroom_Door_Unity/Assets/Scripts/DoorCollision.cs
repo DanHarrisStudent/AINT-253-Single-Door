@@ -19,6 +19,8 @@ public class DoorCollision : MonoBehaviour
         {
             _animator.SetBool("open", true);
             _audio.Play();
+            
         }
+        
     }
 }
