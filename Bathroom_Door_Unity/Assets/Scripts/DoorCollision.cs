@@ -5,12 +5,16 @@ using UnityEngine;
 public class DoorCollision : MonoBehaviour
 {
     private Animator _animator;
-    private AudioSource _audio;    
+    private AudioSource _audio;
+    private bool _audioPlayed = false;
+    public GameObject _water;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
+
+        _water.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -18,8 +22,16 @@ public class DoorCollision : MonoBehaviour
         if (other.tag == "Player")
         {
             _animator.SetBool("open", true);
-            _audio.Play();
+            _water.SetActive(true);
+
+            if (_audioPlayed == false)
+            {
+                _audioPlayed = true;
+                _audio.Play();
+            }
             
+            
+                        
         }
         
     }
